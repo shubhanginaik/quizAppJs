@@ -1,6 +1,6 @@
 # Quiz App
 
-Welcome to the Quiz App! This application allows users to take quizzes on various topics, track their scores, and improve their knowledge in an interactive way. Built using JavaScript, HTML, and CSS, this app is designed to be user-friendly and engaging.
+Welcome to the Quiz App! This application allows users to take quizzes on Javascript topic, track their scores, and improve their knowledge in an interactive way. Built using JavaScript, HTML, and CSS, this app is designed to be user-friendly and engaging.
 
 ## Table of Contents
 
