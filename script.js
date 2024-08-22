@@ -2,48 +2,57 @@
 
 const questions = [
   {
-    question: "Which is largest animal in the world?",
+    question:
+      "Which of the following is a correct way to define a function in JavaScript?",
     answers: [
-      { text: "Blue whale", correct: true },
-      { text: "Shark", correct: false },
-      { text: "Elephant", correct: false },
-      { text: "Giraffe", correct: false },
+      { text: "function myFunction() {}", correct: true },
+      { text: "def myFunction() {}", correct: false },
+      { text: "function:myFunction() {}", correct: false },
+      { text: "func myFunction() {}", correct: false },
     ],
   },
   {
-    question: "Which is largest country in the world?",
+    question: "What does JSON.stringify() do in JavaScript?",
     answers: [
-      { text: "china", correct: false },
-      { text: "Canada", correct: true },
-      { text: "Russia", correct: true },
-      { text: "India", correct: false },
+      { text: "Converts a JSON string into an object", correct: false },
+      {
+        text: "Converts a JavaScript object into a JSON string",
+        correct: true,
+      },
+      {
+        text: "Converts a JavaScript object into a plain text string",
+        correct: false,
+      },
+      { text: "Converts a JSON string into an array", correct: false },
     ],
   },
   {
-    question: "Which is largest continent in the world?",
+    question:
+      "Which method is used to add one or more elements to the end of an array in JavaScript?",
     answers: [
-      { text: "Africa", correct: false },
-      { text: "Europe", correct: false },
-      { text: "North America", correct: false },
-      { text: "Asia", correct: true },
+      { text: "push()", correct: true },
+      { text: "pop()", correct: false },
+      { text: "shift()", correct: false },
+      { text: "unshift()", correct: false },
     ],
   },
   {
-    question: "Which is smallest country in the world?",
+    question:
+      "What will be the output of the following code? \n console.log(0.1 + 0.2 === 0.3);",
     answers: [
-      { text: "Vatican City", correct: true },
-      { text: "Malta", correct: false },
-      { text: "Nauru", correct: false },
-      { text: "Bahrain", correct: false },
+      { text: "true", correct: false },
+      { text: "false", correct: true },
+      { text: "indefined", correct: false },
+      { text: "NaN", correct: false },
     ],
   },
   {
-    question: "Which is smallest continent in the world?",
+    question: "What is the purpose of the isNaN function in JavaScript?",
     answers: [
-      { text: "Asia", correct: false },
-      { text: "Australia", correct: true },
-      { text: "Arctic", correct: false },
-      { text: "Africa", correct: false },
+      { text: "To check if a value is a string", correct: false },
+      { text: "To check if a value is null", correct: false },
+      { text: "To check if a value is undefined", correct: false },
+      { text: "To check if a value is NaN (Not-a-Number)", correct: true },
     ],
   },
 ];
@@ -92,6 +101,7 @@ function selectAnswer(e) {
   const isCorrect = selectedBtn.dataset.correct === "true";
   if (isCorrect) {
     selectedBtn.classList.add("correct");
+    score++;
   } else {
     selectedBtn.classList.add("inCorrect");
   }
@@ -104,4 +114,28 @@ function selectAnswer(e) {
   });
   nextButton.style.display = "block";
 }
+
+function showScore() {
+  resetState();
+  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+  nextButton.innerHTML = "Play Again";
+  nextButton.style.display = "block";
+}
+
+function handleNextButton() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+}
+
+nextButton.addEventListener("click", () => {
+  if (currentQuestionIndex < questions.length) {
+    handleNextButton();
+  } else {
+    startQuiz();
+  }
+});
 startQuiz();
